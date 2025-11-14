@@ -16,7 +16,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-import { Plus, MagnifyingGlass, Trash, X } from '@phosphor-icons/react'
+import { Plus, MagnifyingGlass, Trash, X, NotePencil, Heart, GithubLogo } from '@phosphor-icons/react'
 import { marked } from 'marked'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -143,11 +143,34 @@ function App() {
   }
 
   return (
-    <div className="h-screen w-screen bg-background flex">
-      <div className="w-80 border-r border-border flex flex-col">
+    <div className="h-screen w-screen bg-background flex flex-col">
+      <motion.header 
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className="border-b border-border bg-card/50 backdrop-blur-sm"
+      >
+        <div className="px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="bg-accent text-accent-foreground rounded-lg p-2">
+              <NotePencil className="h-5 w-5" weight="duotone" />
+            </div>
+            <div>
+              <h1 className="text-lg font-semibold text-foreground">Notes</h1>
+              <p className="text-xs text-muted-foreground">Capture your thoughts</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <span>{notes?.length || 0} {notes?.length === 1 ? 'note' : 'notes'}</span>
+          </div>
+        </div>
+      </motion.header>
+
+      <div className="flex-1 flex min-h-0">
+        <div className="w-80 border-r border-border flex flex-col">
         <div className="p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-semibold text-foreground">Notes</h1>
+            <h2 className="text-sm font-medium text-foreground">All Notes</h2>
             <Button
               size="sm"
               onClick={createNewNote}
@@ -301,6 +324,33 @@ function App() {
           </div>
         )}
       </div>
+      </div>
+
+      <motion.footer 
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+        className="border-t border-border bg-card/30 backdrop-blur-sm"
+      >
+        <div className="px-6 py-3 flex items-center justify-between text-xs text-muted-foreground">
+          <div className="flex items-center gap-4">
+            <span>Made with <Heart className="inline h-3 w-3 text-red-400" weight="fill" /> by Spark</span>
+            <Separator orientation="vertical" className="h-3" />
+            <span>Markdown-powered notes</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <a 
+              href="https://github.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 hover:text-foreground transition-colors"
+            >
+              <GithubLogo className="h-4 w-4" />
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </motion.footer>
 
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <AlertDialogContent>
