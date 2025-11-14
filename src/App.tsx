@@ -16,9 +16,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-import { Plus, MagnifyingGlass, Trash, X, NotePencil, Heart, GithubLogo } from '@phosphor-icons/react'
+import { Plus, MagnifyingGlass, Trash, X, NotePencil, Heart, GithubLogo, CreditCard } from '@phosphor-icons/react'
 import { marked } from 'marked'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Checkout } from '@/components/Checkout'
+import { Toaster } from '@/components/ui/sonner'
 
 interface Note {
   id: string
@@ -29,6 +31,7 @@ interface Note {
 }
 
 function App() {
+  const [showCheckout, setShowCheckout] = useState(false)
   const [notes, setNotes] = useKV<Note[]>('notes', [])
   const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
@@ -60,6 +63,15 @@ function App() {
         note.content.toLowerCase().includes(query)
     )
   }, [notes, searchQuery])
+
+  const markdownHtml = useMemo(() => {
+    if (!editContent) return ''
+    return marked(editContent, { breaks: true })
+  }, [editContent])
+
+  if (showCheckout) {
+    return <Checkout onBack={() => setShowCheckout(false)} />
+  }
 
   const createNewNote = () => {
     const newNote: Note = {
@@ -115,11 +127,6 @@ function App() {
     updateNote(editTitle, value)
   }
 
-  const markdownHtml = useMemo(() => {
-    if (!editContent) return ''
-    return marked(editContent, { breaks: true })
-  }, [editContent])
-
   const formatDate = (timestamp: number) => {
     const date = new Date(timestamp)
     const now = new Date()
@@ -160,8 +167,19 @@ function App() {
               <p className="text-xs text-muted-foreground">Capture your thoughts</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span>{notes?.length || 0} {notes?.length === 1 ? 'note' : 'notes'}</span>
+          <div className="flex items-center gap-3">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => setShowCheckout(true)}
+              className="text-xs"
+            >
+              <CreditCard className="h-4 w-4 mr-2" />
+              Upgrade to Premium
+            </Button>
+            <span className="text-xs text-muted-foreground">
+              {notes?.length || 0} {notes?.length === 1 ? 'note' : 'notes'}
+            </span>
           </div>
         </div>
       </motion.header>
@@ -371,6 +389,8 @@ function App() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <Toaster />
     </div>
   )
 }
