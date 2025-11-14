@@ -1,21 +1,21 @@
 # Planning Guide
 
-A minimalist note-taking application that enables users to quickly capture, organize, and find their thoughts with markdown formatting support.
+**Experience Qualities**:
 
 **Experience Qualities**:
-1. **Effortless** - Creating and editing notes should feel instantaneous and friction-free
-2. **Focused** - A distraction-free interface that keeps attention on content, not controls
-3. **Responsive** - Fast search and seamless transitions that respect the user's flow state
+  - The app manages note creation, editing, deletion, and search with persistent state but
+## Essential Features
+### Note Creation
 
-**Complexity Level**: Light Application (multiple features with basic state)
-  - The app manages note creation, editing, deletion, and search with persistent state but doesn't require accounts or complex backend functionality
+- **Progression**: Click button → Empty note appears with focus on title → U
+
 
 ## Essential Features
 
 ### Note Creation
-- **Functionality**: Create new notes with markdown content
-- **Purpose**: Capture ideas quickly without friction
-- **Trigger**: Click "New Note" button
+- **Purpose**: Quickly find specific notes as the collectio
+- **Progression**: User types search term → List filt
+
 - **Progression**: Click button → Empty note appears with focus on title → User types title and content → Auto-saved to storage
 - **Success criteria**: New note appears in list immediately, focus is automatically set to title field
 
@@ -34,42 +34,42 @@ A minimalist note-taking application that enables users to quickly capture, orga
 - **Success criteria**: Search matches titles and content, results appear within 100ms
 
 ### Note Management
-- **Functionality**: Edit existing notes and delete unwanted notes
-- **Purpose**: Maintain an organized collection of relevant notes
-- **Trigger**: Click note to edit, click delete icon to remove
-- **Progression**: Click note → Note content loads in editor → Make changes → Auto-saved | Click delete → Confirmation dialog → Note removed from list
-- **Success criteria**: Changes persist, deletions are confirmed before executing
+  - Body (Note Content): Inter Regular/15px/relaxed line height (1
+  - Search Input: Inter Regular/14px/normal letter spacing
+## Animations
 
-## Edge Case Handling
-- **Empty states**: Show helpful message with action prompt when no notes exist
-- **Empty search results**: Display "No notes found" message with option to clear search
-- **Long note titles**: Truncate with ellipsis in list view to maintain layout
-- **Rapid typing**: Debounce search and auto-save to prevent performance issues
-- **Markdown errors**: Gracefully handle invalid markdown without breaking the preview
+- **Hierarchy of Movement**: 
 
-## Design Direction
-The design should feel calm, elegant, and purposeful - like a well-crafted journal. It should embrace generous whitespace and subtle interactions that don't interrupt the creative flow. A minimal interface that fades into the background, letting the content take center stage.
 
-## Color Selection
-Analogous cool palette with muted, sophisticated tones that create a serene writing environment
+- **Components**: 
+  - Input (search field with icon)
+  - Dialog (delete confirmation)
+  - Separator (visual dividers)
+- **Customizations**: 
 
-- **Primary Color**: Deep slate blue (oklch(0.35 0.05 250)) - Communicates focus and intellectual depth
-- **Secondary Colors**: Soft gray-blue (oklch(0.85 0.02 250)) for backgrounds, maintaining visual harmony
-- **Accent Color**: Bright teal (oklch(0.65 0.15 200)) for interactive elements and subtle highlights
-- **Foreground/Background Pairings**:
-  - Background (Light Slate oklch(0.98 0.01 250)): Dark Slate text (oklch(0.25 0.04 250)) - Ratio 14.2:1 ✓
-  - Card (White oklch(1 0 0)): Dark Slate text (oklch(0.25 0.04 250)) - Ratio 15.8:1 ✓
-  - Primary (Deep Slate oklch(0.35 0.05 250)): White text (oklch(1 0 0)) - Ratio 10.5:1 ✓
-  - Secondary (Light Blue-Gray oklch(0.85 0.02 250)): Dark Slate text (oklch(0.25 0.04 250)) - Ratio 11.2:1 ✓
-  - Accent (Bright Teal oklch(0.65 0.15 200)): White text (oklch(1 0 0)) - Ratio 5.8:1 ✓
-  - Muted (Pale Blue oklch(0.92 0.01 250)): Medium Slate text (oklch(0.50 0.03 250)) - Ratio 6.1:1 ✓
+- **States**: 
+  - Inputs: Soft border glow on focus, clear icon appears when text present
 
-## Font Selection
-Clean, modern sans-serif with excellent readability for extended writing sessions - Inter for its precise letterforms and extensive weight range
+  - MagnifyingGlas
+  - X (clear search)
 
-- **Typographic Hierarchy**:
-  - H1 (App Title): Inter SemiBold/20px/tight letter spacing
-  - H2 (Note Title): Inter Medium/18px/normal letter spacing  
+  - Card spacing: gap-3
+  - Section gaps: gap-6
+  - Stack layout vertically (editor below list)
+  - Hide preview by default, show tog
+
+
+
+
+
+
+
+
+
+
+
+
+
   - Body (Note Content): Inter Regular/15px/relaxed line height (1.6)
   - Small (Timestamps, Meta): Inter Regular/13px/normal letter spacing
   - Search Input: Inter Regular/14px/normal letter spacing
