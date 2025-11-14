@@ -189,13 +189,22 @@ function App() {
         <div className="p-6 space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-medium text-foreground">All Notes</h2>
-            <Button
-              size="sm"
-              onClick={createNewNote}
-              className="bg-accent text-accent-foreground hover:bg-accent/90"
-            >
-              <Plus className="h-4 w-4" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                size="sm"
+                onClick={createNewNote}
+                className="bg-accent text-accent-foreground hover:bg-accent/90"
+              >
+                <Plus className="h-4 w-4" />
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => window.location.href = 'https://buy.stripe.com/6oU9AM2U8aB23136D07Zu00'}
+              >
+                Pay
+              </Button>
+            </div>
           </div>
 
           <div className="relative">
